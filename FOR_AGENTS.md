@@ -40,16 +40,67 @@
 
 推送后外链立即生效：`https://qq136692547-cmyk.github.io/images/img/你的图片.png`
 
-### B. PicGo 一键上传（推荐）
+### B. PicGo 一键上传（推荐，图文步骤）
 
-PicGo → 图床设置 → GitHub 图床：
-- 仓库名：`qq136692547-cmyk/images`
-- 分支名：`main`
-- Token：GitHub Personal Access Token（需 `repo` 权限）
-- 存储路径：`img/`
-- 自定义域名：`https://qq136692547-cmyk.github.io/images/`
+> 适用场景：日常写博客/发论坛，拖图即传、自动得外链，不用碰 git 命令。
 
-上传后剪贴板自动得到外链。
+#### 步骤 1：下载并安装 PicGo
+
+- 官网：https://picgo.github.io/PicGo-Doc/ （或 GitHub  releases：`Molunerfinn/PicGo`）
+- 支持 Windows / macOS / Linux，按系统下载安装包，一路下一步安装。
+- 打开后常驻系统托盘（任务栏右下角）。
+
+> 图示说明（无截图，按文字操作即可）：主界面左侧为「图床设置 / 上传区 / 相册」，顶部为拖拽上传区。
+
+#### 步骤 2：准备 GitHub Token（只需做一次）
+
+1. 打开 https://github.com/settings/tokens?type=beta （或 头像 → Settings → Developer settings → Personal access tokens → Tokens (classic)）
+2. 点 **Generate new token**（选 classic 最稳）
+3. Note 填 `picgo-imgbed`，Expiration 按需（建议选 90 天或 No expiration 仅自用）
+4. 勾选 **`repo`**（全勾 repo 那一组即可，给仓库读写权限）
+5. 点 Generate token，**立刻复制那一长串 `ghp_...`**（只显示一次！）
+
+> ⚠️ Token 等同你账号密码，只存本地 PicGo，不要发给别人或提交到仓库。
+
+#### 步骤 3：配置 GitHub 图床
+
+1. 打开 PicGo → 左侧 **图床设置** → 选 **GitHub 图床**
+2. 按图填写：
+
+   | 字段 | 填写值 |
+   |---|---|
+   | 仓库名 | `qq136692547-cmyk/images` |
+   | 分支名 | `main` |
+   | Token | 步骤 2 复制的 `ghp_...` |
+   | 存储路径 | `img/` （结尾带斜杠）|
+   | 自定义域名 | `https://qq136692547-cmyk.github.io/images/` （结尾带斜杠）|
+
+3. 点 **确定** 保存。
+
+> 图示说明（无截图，按上表填写即可）：GitHub 图床配置页共 5 个输入框，依次对应上表「字段 / 填写值」。
+
+#### 步骤 4：设为默认图床并测试
+
+1. PicGo 左侧 **图床设置** 顶部「设置为默认图床」选 **GitHub 图床**。
+2. 拖一张图片到 PicGo 主界面上传区，或点「上传区」选择文件。
+3. 上传成功 → 外链自动复制到剪贴板，格式即：
+
+       https://qq136692547-cmyk.github.io/images/img/你的图片.png
+
+4. 打开该链接确认能显示（GitHub Pages 构建约 1 分钟生效）。
+
+> 图示说明（无截图）：上传成功后 PicGo 相册列表会出现该图，鼠标悬停可复制「GitHub 外链」。
+
+#### 步骤 5（可选）：Typora / 写作软件联动
+
+- Typora：偏好设置 → 图像 → 上传服务选「PicGo (app)」→ 上传时自动传图床并替换本地路径。
+- 任何 Markdown 编辑器粘贴图片即可自动变外链，写博客插图零摩擦。
+
+#### 常见问题
+
+- **上传失败 / 401**：Token 没勾 `repo`，或复制时被截断。重做步骤 2。
+- **外链打不开 / 404**：等 1 分钟让 GitHub Pages 重新构建；确认存储路径和自定义域名结尾都带 `/`。
+- **国内偶尔慢**：本图床主打海外场景，`github.io` 国内偶偏慢属正常，不影响海外论坛/博客。
 
 ## 约束（务必遵守）
 
